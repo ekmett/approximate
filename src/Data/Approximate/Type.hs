@@ -4,6 +4,7 @@
 {-# LANGUAGE TemplateHaskell #-}
 {-# LANGUAGE DeriveDataTypeable #-}
 {-# LANGUAGE TypeFamilies #-}
+{-# LANGUAGE DeriveGeneric #-}
 --------------------------------------------------------------------
 -- |
 -- Copyright :  (c) Edward Kmett 2013
@@ -28,22 +29,21 @@ import Control.Lens
 import Control.Monad
 import Data.Binary as Binary
 import Data.Bytes.Serial as Bytes
-import Data.Bytes.Get as Bytes
-import Data.Bytes.Put as Bytes
-import Data.SafeCopy
-import Data.Serialize as Serialize
-import Data.Hashable
-import Data.Hashable.Extras
 import Data.Copointed
 import Data.Data
 import Data.Foldable
 import Data.Functor.Apply
+import Data.Hashable
+import Data.Hashable.Extras
 import Data.Monoid
 import Data.Pointed
-import Numeric.Log
-import Data.Vector.Unboxed as U
+import Data.SafeCopy
+import Data.Serialize as Serialize
 import Data.Vector.Generic as G
 import Data.Vector.Generic.Mutable as M
+import Data.Vector.Unboxed as U
+import GHC.Generics
+import Numeric.Log
 
 -- | An approximate number, with a likely interval, an expected value and a lower bound on the @log@ of probability that the answer falls in the interval.
 --
@@ -51,7 +51,7 @@ import Data.Vector.Generic.Mutable as M
 data Approximate a = Approximate
   { _confidence :: {-# UNPACK #-} !(Log Double)
   , _lo, _estimate, _hi :: a
-  } deriving (Eq,Show,Read,Typeable,Data)
+  } deriving (Eq,Show,Read,Typeable,Data,Generic)
 
 makeClassy ''Approximate
 
@@ -68,8 +68,11 @@ instance Serialize a => SafeCopy (Approximate a)
 instance Hashable a => Hashable (Approximate a)
 instance Hashable1 Approximate
 
-instance Serial1 Approximate
 instance Serial a => Serial (Approximate a)
+
+instance Serial1 Approximate where
+  serializeWith f (Approximate p l m h) = serialize p >> f l >> f m >> f h
+  deserializeWith m = Approximate <$> deserialize <*> m <*> m <*> m
 
 -- instance Storable a => Storable (Approximate a) where
 --  sizeOf _ = sizeOf (undefined :: Double) + sizeOf (undefined :: a) * 3 --?
@@ -125,7 +128,7 @@ instance Unbox a => G.Vector U.Vector (Approximate a) where
   {-# INLINE elemseq #-}
 
 instance NFData a => NFData (Approximate a) where
-  rnf (Approximate p l m h) = rnf l `seq` rnf m `seq` rnf h `seq` ()
+  rnf (Approximate _ l m h) = rnf l `seq` rnf m `seq` rnf h `seq` ()
 
 instance Functor Approximate where
   fmap f (Approximate p l m h) = Approximate p (f l) (f m) (f h)
