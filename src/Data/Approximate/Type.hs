@@ -77,6 +77,8 @@ instance Serial1 Approximate where
 -- instance Storable a => Storable (Approximate a) where
 --  sizeOf _ = sizeOf (undefined :: Double) + sizeOf (undefined :: a) * 3 --?
 
+instance Unbox a => Unbox (Approximate a)
+
 newtype instance U.MVector s (Approximate a) = MV_Approximate (U.MVector s (Log Double,a,a,a))
 newtype instance U.Vector (Approximate a) = V_Approximate (U.Vector (Log Double,a,a,a))
 
