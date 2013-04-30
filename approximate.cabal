@@ -1,6 +1,6 @@
 name:          approximate
 category:      Numeric
-version:       0.1
+version:       0.1.1
 license:       BSD3
 cabal-version: >= 1.8
 license-file:  LICENSE
@@ -64,10 +64,13 @@ library
   exposed-modules:
     Data.Approximate.Type
     Data.Approximate.Mass
+    Data.Approximate.Numerics
 
   if flag(lib-Werror)
     ghc-options: -Werror
 
+
+  c-sources: cbits/fast.c
   ghc-options: -Wall -fwarn-tabs -O2
   hs-source-dirs: src
 
