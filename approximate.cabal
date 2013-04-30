@@ -62,6 +62,7 @@ library
     vector                    >= 0.9      && < 0.11
 
   exposed-modules:
+    Data.Approximate
     Data.Approximate.Type
     Data.Approximate.Mass
     Data.Approximate.Numerics
