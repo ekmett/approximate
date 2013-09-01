@@ -1,6 +1,7 @@
 0.2
 ---
 * Removed the `data-default` dependency
+* Increased range of supported versions of `generic-deriving`.
 
 0.1.1
 -----
