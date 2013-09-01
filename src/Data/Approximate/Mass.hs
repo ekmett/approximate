@@ -24,7 +24,6 @@ import Data.Binary as Binary
 import Data.Bytes.Serial as Bytes
 import Data.Copointed
 import Data.Data
-import Data.Default
 import Data.Foldable
 import Data.Functor.Bind
 import Data.Functor.Extend
@@ -156,10 +155,6 @@ instance Pointed Mass where
 instance Copointed Mass where
   copoint (Mass _ a) = a
   {-# INLINE copoint #-}
-
-instance Default a => Default (Mass a) where
-  def = Mass 1 def
-  {-# INLINE def #-}
 
 instance Applicative Mass where
   pure = Mass 1
