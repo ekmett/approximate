@@ -1,3 +1,7 @@
+0.2.1.1
+-------
+* Bumped `cereal` bounds
+
 0.2
 ---
 * Removed the `data-default` dependency
