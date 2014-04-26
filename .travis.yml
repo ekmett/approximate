@@ -6,13 +6,18 @@ before_install:
 
   # Try installing some of the build-deps with apt-get for speed.
   - travis/cabal-apt-install $mode
+  - cabal install packdeps packunused
+  - export PATH=~/.cabal/bin:$PATH
 
 install:
   - cabal configure -flib-Werror $mode
   - cabal build
 
 script:
-  - $script && hlint src --cpp-define HLINT
+  - $script
+  - packdeps approximate.cabal
+  - packunused
+  - hlint src --cpp-define HLINT
 
 notifications:
   irc:
