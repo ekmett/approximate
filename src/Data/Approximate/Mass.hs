@@ -37,7 +37,7 @@ import Data.Traversable
 import Data.Vector.Generic as G
 import Data.Vector.Generic.Mutable as M
 import Data.Vector.Unboxed as U
-import Generics.Deriving
+import GHC.Generics
 import Numeric.Log
 
 -- | A quantity with a lower-bound on its probability mass. This represents
