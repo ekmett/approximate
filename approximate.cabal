@@ -25,6 +25,7 @@ extra-source-files:
   AUTHORS.markdown
   README.markdown
   CHANGELOG.markdown
+  HLint.hs
 
 source-repository head
   type: git
