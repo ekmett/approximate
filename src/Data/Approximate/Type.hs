@@ -1,3 +1,4 @@
+{-# LANGUAGE CPP #-}
 {-# LANGUAGE MultiParamTypeClasses #-}
 {-# LANGUAGE FunctionalDependencies #-}
 {-# LANGUAGE FlexibleInstances #-}
@@ -31,7 +32,9 @@ import Data.Binary as Binary
 import Data.Bytes.Serial as Bytes
 import Data.Copointed
 import Data.Data
+#if __GLASGOW_HASKELL__ < 710
 import Data.Foldable
+#endif
 import Data.Functor.Apply
 import Data.Hashable
 import Data.Hashable.Extras

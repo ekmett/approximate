@@ -1,3 +1,7 @@
+0.2.2.1
+-------
+* Compiles warning-free on GHC 7.10
+
 0.2.1.1
 -------
 * Bumped `cereal` bounds
