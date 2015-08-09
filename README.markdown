@@ -1,7 +1,7 @@
 approximate
 ===========
 
-[![Build Status](https://secure.travis-ci.org/ekmett/approximate.png?branch=master)](http://travis-ci.org/ekmett/approximate)
+[![Hackage](https://img.shields.io/hackage/v/approximate.svg)](https://hackage.haskell.org/package/approximate) [![Build Status](https://secure.travis-ci.org/ekmett/approximate.png?branch=master)](http://travis-ci.org/ekmett/approximate)
 
 This package provides approximate numbers and discrete values with lower bounds on their probability of correctness.
 
