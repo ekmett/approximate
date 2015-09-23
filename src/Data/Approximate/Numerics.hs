@@ -62,7 +62,11 @@ instance Fast Double where
 --
 -- 'flog' had better outperform it! It is provided merely for comparison.
 blog :: Floating a => a -> a
-blog x = 6 * (x - 1) / (x + 1 + 4 * sqrt x);
+blog x = 6 * (x - 1) / (x + 1 + 4 * sqrt x)
+      -- 6 / (x + 1 + 4 * sqrt x) / (x-1) -- herbie's suggested replacement.
+#ifdef HERBIE
+{-# ANN blog "NoHerbie" #-}
+#endif
 
 foreign import ccall unsafe pow_fast_lb       :: Double -> Double -> Double
 foreign import ccall unsafe pow_fast_ub       :: Double -> Double -> Double

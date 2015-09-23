@@ -40,6 +40,10 @@ flag lib-Werror
   default: False
   manual: True
 
+flag herbie
+  default: False
+  manual: True
+
 library
   build-depends:
     base                      >= 4.3      && < 5,
@@ -58,6 +62,11 @@ library
     semigroups                >= 0.8.4    && < 1,
     safecopy                  >= 0.8.1    && < 0.9,
     vector                    >= 0.9      && < 0.11
+
+  if flag(herbie)
+    build-depends: HerbiePlugin >= 0.1 && < 0.2
+    cpp-options: -DHERBIE
+    ghc-options: -fplugin=Herbie
 
   exposed-modules:
     Data.Approximate
