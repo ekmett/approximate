@@ -123,6 +123,10 @@ instance Unbox a => M.MVector U.MVector (Mass a) where
   {-# INLINE basicUnsafeMove #-}
   basicUnsafeGrow (MV_Mass v) n = MV_Mass `liftM` M.basicUnsafeGrow v n
   {-# INLINE basicUnsafeGrow #-}
+#if MIN_VERSION_vector(0,11,0)
+  basicInitialize (MV_Mass v) = M.basicInitialize v
+  {-# INLINE basicInitialize #-}
+#endif
 
 instance Unbox a => G.Vector U.Vector (Mass a) where
   basicUnsafeFreeze (MV_Mass v) = V_Mass `liftM` G.basicUnsafeFreeze v

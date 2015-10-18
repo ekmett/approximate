@@ -110,6 +110,10 @@ instance Unbox a => M.MVector U.MVector (Approximate a) where
   {-# INLINE basicUnsafeMove #-}
   basicUnsafeGrow (MV_Approximate v) n = MV_Approximate `liftM` M.basicUnsafeGrow v n
   {-# INLINE basicUnsafeGrow #-}
+#if MIN_VERSION_vector(0,11,0)
+  basicInitialize (MV_Approximate v) = M.basicInitialize v
+  {-# INLINE basicInitialize #-}
+#endif
 
 instance Unbox a => G.Vector U.Vector (Approximate a) where
   basicUnsafeFreeze (MV_Approximate v) = V_Approximate `liftM` G.basicUnsafeFreeze v

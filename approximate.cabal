@@ -1,6 +1,6 @@
 name:          approximate
 category:      Numeric
-version:       0.2.2.1
+version:       0.2.2.2
 license:       BSD3
 cabal-version: >= 1.8
 license-file:  LICENSE
@@ -61,7 +61,7 @@ library
     semigroupoids             >= 3.0.2    && < 6,
     semigroups                >= 0.8.4    && < 1,
     safecopy                  >= 0.8.1    && < 0.9,
-    vector                    >= 0.9      && < 0.11
+    vector                    >= 0.9      && < 0.12
 
   if flag(herbie)
     build-depends: HerbiePlugin >= 0.1 && < 0.2
