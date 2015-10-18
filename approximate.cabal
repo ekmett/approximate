@@ -36,10 +36,6 @@ flag test-doctests
   default: True
   manual: True
 
-flag lib-Werror
-  default: False
-  manual: True
-
 flag herbie
   default: False
   manual: True
@@ -74,9 +70,6 @@ library
     Data.Approximate.Mass
     Data.Approximate.Numerics
 
-  if flag(lib-Werror)
-    ghc-options: -Werror
-
   if impl(ghc >= 7.4 && < 7.6)
     build-depends: ghc-prim
 
@@ -100,6 +93,3 @@ test-suite doctests
       filepath,
       semigroups     >= 0.9,
       simple-reflect >= 0.3.1
-
-  if impl(ghc<7.6.1) && flag(lib-Werror)
-    ghc-options: -Werror
