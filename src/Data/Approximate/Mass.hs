@@ -189,7 +189,7 @@ instance Bind Mass where
   {-# INLINE (>>-) #-}
 
 instance Monad Mass where
-  return = Mass 1
+  return = pure
   {-# INLINE return #-}
   Mass p a >>= f = case f a of
     Mass q b -> Mass (p * q) b
