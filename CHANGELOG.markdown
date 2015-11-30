@@ -1,3 +1,7 @@
+0.2.2.3
+-------
+* Added support for `safecopy` 0.9 and `cereal` 0.5
+
 0.2.2.1
 -------
 * Compiles warning-free on GHC 7.10
