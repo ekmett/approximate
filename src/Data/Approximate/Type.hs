@@ -36,8 +36,8 @@ import Data.Data
 import Data.Foldable
 #endif
 import Data.Functor.Apply
-import Data.Hashable
-import Data.Hashable.Extras
+import Data.Hashable (Hashable(..))
+import qualified Data.Hashable.Extras as H.Extras
 import Data.Monoid
 import Data.Pointed
 import Data.SafeCopy
@@ -47,6 +47,10 @@ import Data.Vector.Generic.Mutable as M
 import Data.Vector.Unboxed as U
 import GHC.Generics
 import Numeric.Log
+
+#if MIN_VERSION_hashable(1,2,5)
+import Data.Hashable.Lifted (Hashable1(..))
+#endif
 
 -- | An approximate number, with a likely interval, an expected value and a lower bound on the @log@ of probability that the answer falls in the interval.
 --
@@ -69,7 +73,12 @@ instance Serialize a => Serialize (Approximate a) where
 instance Serialize a => SafeCopy (Approximate a)
 
 instance Hashable a => Hashable (Approximate a)
-instance Hashable1 Approximate
+instance H.Extras.Hashable1 Approximate
+#if MIN_VERSION_hashable(1,2,5)
+instance Hashable1 Approximate where
+    liftHashWithSalt h s (Approximate c low est high) =
+        hashWithSalt s c `h` low `h` est `h` high
+#endif
 
 instance Serial a => Serial (Approximate a)
 

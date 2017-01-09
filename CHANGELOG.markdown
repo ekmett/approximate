@@ -1,3 +1,8 @@
+0.2.3
+-----
+
+* Support `Hashable` from `hashable >= 1.2.5.0`
+
 0.2.2.3
 -------
 * Added support for `safecopy` 0.9 and `cereal` 0.5
