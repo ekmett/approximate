@@ -3,7 +3,7 @@
 -----------------------------------------------------------------------------
 -- |
 -- Module      :  Main (doctests)
--- Copyright   :  (C) 2012-13 Edward Kmett
+-- Copyright   :  (C) 2012-14 Edward Kmett
 -- License     :  BSD-style (see the file LICENSE)
 -- Maintainer  :  Edward Kmett <ekmett@gmail.com>
 -- Stability   :  provisional
@@ -15,8 +15,10 @@
 -----------------------------------------------------------------------------
 module Main where
 
-import Build_doctests (deps)
+import Build_doctests (autogen_dir, deps)
+#if __GLASGOW_HASKELL__ < 710
 import Control.Applicative
+#endif
 import Control.Monad
 import Data.List
 import System.Directory
@@ -54,11 +56,13 @@ withUnicode m = m
 main :: IO ()
 main = withUnicode $ getSources >>= \sources -> doctest $
     "-isrc"
-  : "-idist/build/autogen"
+  : ("-i" ++ autogen_dir)
   : "-optP-include"
-  : "-optPdist/build/autogen/cabal_macros.h"
+  : ("-optP" ++ autogen_dir ++ "/cabal_macros.h")
   : "-hide-all-packages"
-  : "-Iincludes"
+#ifdef TRUSTWORTHY
+  : "-DTRUSTWORTHY=1"
+#endif
   : map ("-package="++) deps ++ sources
 
 getSources :: IO [FilePath]
