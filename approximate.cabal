@@ -27,6 +27,12 @@ extra-source-files:
   CHANGELOG.markdown
   HLint.hs
 
+custom-setup
+  setup-depends:
+    base          >= 4.3 && <5,
+    Cabal         >= 1.10,
+    cabal-doctest >= 1 && <1.1
+
 source-repository head
   type: git
   location: git://github.com/analytics/approximate.git
@@ -57,7 +63,7 @@ library
     semigroupoids             >= 3.0.2    && < 6,
     semigroups                >= 0.8.4    && < 1,
     safecopy                  >= 0.8.1    && < 0.10,
-    vector                    >= 0.9      && < 0.12
+    vector                    >= 0.9      && < 0.13
 
   if flag(herbie)
     build-depends: HerbiePlugin >= 0.1 && < 0.2
