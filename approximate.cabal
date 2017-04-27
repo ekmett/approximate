@@ -1,6 +1,6 @@
 name:          approximate
 category:      Numeric
-version:       0.2.2.4
+version:       0.2.3
 license:       BSD3
 cabal-version: >= 1.8
 license-file:  LICENSE
@@ -11,7 +11,7 @@ homepage:      http://github.com/analytics/approximate/
 bug-reports:   http://github.com/analytics/approximate/issues
 copyright:     Copyright (C) 2013 Edward A. Kmett
 build-type:    Custom
-tested-with:   GHC == 7.4.1, GHC == 7.6.1, GHC == 7.8.4, GHC == 7.10.1
+tested-with:   GHC == 7.4.1, GHC == 7.6.1, GHC == 7.8.4, GHC == 7.10.3, GHC == 8.0.2
 synopsis:      Approximate discrete values and numbers
 description:   This package provides approximate discrete values and numbers.
 
@@ -57,7 +57,7 @@ library
     semigroupoids             >= 3.0.2    && < 6,
     semigroups                >= 0.8.4    && < 1,
     safecopy                  >= 0.8.1    && < 0.10,
-    vector                    >= 0.9      && < 0.12
+    vector                    >= 0.9      && < 0.13
 
   if flag(herbie)
     build-depends: HerbiePlugin >= 0.1 && < 0.2
