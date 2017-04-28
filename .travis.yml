@@ -16,19 +16,19 @@ matrix:
     # some doctests require type-level tricks, only in GHC >=7.8
     - env: CABALVER=1.24 GHCVER=7.4.2 TEST=--disable-tests
       compiler: ": #GHC 7.4.2"
-      addons: {apt: {packages: [cabal-install-head,ghc-7.4.2], sources: [hvr-ghc]}}
+      addons: {apt: {packages: [cabal-install-1.24,ghc-7.4.2], sources: [hvr-ghc]}}
     - env: CABALVER=1.24 GHCVER=7.6.3 TEST=--disable-tests
       compiler: ": #GHC 7.6.3"
-      addons: {apt: {packages: [cabal-install-head,ghc-7.6.3], sources: [hvr-ghc]}}
+      addons: {apt: {packages: [cabal-install-1.24,ghc-7.6.3], sources: [hvr-ghc]}}
     - env: CABALVER=1.24 GHCVER=7.8.4
       compiler: ": #GHC 7.8.4"
-      addons: {apt: {packages: [cabal-install-head,ghc-7.8.4], sources: [hvr-ghc]}}
+      addons: {apt: {packages: [cabal-install-1.24,ghc-7.8.4], sources: [hvr-ghc]}}
     - env: CABALVER=1.24 GHCVER=7.10.3
       compiler: ": #GHC 7.10.3"
-      addons: {apt: {packages: [cabal-install-head,ghc-7.10.3], sources: [hvr-ghc]}}
+      addons: {apt: {packages: [cabal-install-1.24,ghc-7.10.3], sources: [hvr-ghc]}}
     - env: CABALVER=1.24 GHCVER=8.0.2
       compiler: ": #GHC 8.0.2"
-      addons: {apt: {packages: [cabal-install-head,ghc-8.0.2], sources: [hvr-ghc]}}
+      addons: {apt: {packages: [cabal-install-1.24,ghc-8.0.2], sources: [hvr-ghc]}}
 
 before_install:
  - unset CC
