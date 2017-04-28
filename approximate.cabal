@@ -27,6 +27,12 @@ extra-source-files:
   CHANGELOG.markdown
   HLint.hs
 
+custom-setup
+  setup-depends:
+    base          >= 4.3 && <5,
+    Cabal         >= 1.10,
+    cabal-doctest >= 1 && <1.1
+
 source-repository head
   type: git
   location: git://github.com/analytics/approximate.git
