@@ -33,7 +33,7 @@ import Data.Foldable
 import Data.Functor.Bind
 import Data.Functor.Extend
 import Data.Hashable (Hashable(..))
-import qualified Data.Hashable.Extras as H.Extras
+import Data.Hashable.Lifted (Hashable1(..))
 import Data.Pointed
 import Data.SafeCopy
 import Data.Semigroup
@@ -46,10 +46,6 @@ import Data.Vector.Generic.Mutable as M
 import Data.Vector.Unboxed as U
 import GHC.Generics
 import Numeric.Log
-
-#if MIN_VERSION_hashable(1,2,5)
-import Data.Hashable.Lifted (Hashable1(..))
-#endif
 
 -- | A quantity with a lower-bound on its probability mass. This represents
 -- a 'probable value' as a 'Monad' that you can use to calculate progressively
@@ -81,11 +77,8 @@ instance Serialize a => Serialize (Mass a) where
 instance Serialize a => SafeCopy (Mass a)
 
 instance Hashable a => Hashable (Mass a)
-instance H.Extras.Hashable1 Mass
-#if MIN_VERSION_hashable(1,2,5)
 instance Hashable1 Mass where
     liftHashWithSalt h s (Mass m x) = hashWithSalt s m `h` x
-#endif
 
 instance Serial1 Mass where
   serializeWith f (Mass p a) = serialize p >> f a
