@@ -1,5 +1,5 @@
-next
-----
+0.3
+---
 * Replace use of `Hashable1` from `hashable-extras` in favor of `Hashable` from
   `hashable-1.2.5.0`. As a result, the `hashable-extras` dependency has been removed.
 * Revamp `Setup.hs` to use `cabal-doctest`. This makes it build
