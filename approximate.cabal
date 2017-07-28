@@ -93,6 +93,7 @@ test-suite doctests
     buildable: False
   else
     build-depends:
+      approximate,
       base,
       directory      >= 1.0,
       doctest        >= 0.9.1,

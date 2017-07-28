@@ -1,3 +1,7 @@
+next
+----
+* Add a library dependency on the `doctests` test suite
+
 0.3
 ---
 * Replace use of `Hashable1` from `hashable-extras` in favor of `Hashable` from
