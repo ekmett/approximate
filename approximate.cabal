@@ -1,6 +1,6 @@
 name:          approximate
 category:      Numeric
-version:       0.3
+version:       0.3.1
 license:       BSD3
 cabal-version: >= 1.8
 license-file:  LICENSE
