@@ -79,13 +79,18 @@ install:
   - cabal --version
   - echo "$(${HC} --version) [$(${HC} --print-project-git-commit-id 2> /dev/null || echo '?')]"
   - BENCH=${BENCH---enable-benchmarks}
-  - |
+  - | # The doctests require relatively fancy type-level tricks
     if [ dpkg --compare-versions "${HC}" ge "7.8" ]; then
       TEST=${TEST---enable-tests}
     else
       TEST=${TEST---disable-tests}
     fi
-  - HADDOCK=${HADDOCK-true}
+  - | # Workaround for https://github.com/haskell/haddock/issues/679
+    if [ dpkg --compare-versions "${HC}" lt "8.2" ]; then
+      HADDOCK=${HADDOCK-true}
+    else
+      HADDOCK=${HADDOCK=false}
+    fi
   - INSTALLED=${INSTALLED-true}
   - GHCHEAD=${GHCHEAD-false}
   - travis_retry cabal update -v
