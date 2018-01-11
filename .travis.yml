@@ -79,7 +79,12 @@ install:
   - cabal --version
   - echo "$(${HC} --version) [$(${HC} --print-project-git-commit-id 2> /dev/null || echo '?')]"
   - BENCH=${BENCH---enable-benchmarks}
-  - TEST=${TEST---enable-tests}
+  - |
+    if [ dpkg --compare-versions "${HC}" ge "7.8" ]; then
+      TEST=${TEST---enable-tests}
+    else
+      TEST=${TEST---disable-tests}
+    fi
   - HADDOCK=${HADDOCK-true}
   - INSTALLED=${INSTALLED-true}
   - GHCHEAD=${GHCHEAD-false}
