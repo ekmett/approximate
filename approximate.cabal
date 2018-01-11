@@ -89,7 +89,8 @@ test-suite doctests
   ghc-options:    -Wall -threaded
   hs-source-dirs: tests
 
-  if !flag(test-doctests) || impl(ghc < 7.8) -- Some doctests require type-level tricks
+  -- GHC 7.8+ only, because some doctests require type-level tricks
+  if !flag(test-doctests) || impl(ghc < 7.8)
     buildable: False
   else
     build-depends:
