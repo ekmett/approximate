@@ -67,6 +67,7 @@ matrix:
 
 before_install:
   - HC=${CC}
+  - HCVER=${HC/ghc-/}
   - HCPKG=${HC/ghc/ghc-pkg}
   - unset CC
   - ROOTDIR=$(pwd)
@@ -80,7 +81,7 @@ install:
   - echo "$(${HC} --version) [$(${HC} --print-project-git-commit-id 2> /dev/null || echo '?')]"
   - BENCH=${BENCH---enable-benchmarks}
   - | # The doctests require relatively fancy type-level tricks
-    if [ dpkg --compare-versions "${HC}" ge "7.8" ]; then
+    if dpkg --compare-versions "${HCVER}" ge "7.8"; then
       TEST=${TEST---enable-tests}
     else
       TEST=${TEST---disable-tests}
