@@ -153,5 +153,5 @@ script:
   - rm -rf ./dist-newstyle
   - if $HADDOCK; then cabal new-haddock -w ${HC} ${TEST} ${BENCH} all; else echo "Skipping haddock generation";fi
 
-# REGENDATA ["-o",".travis.yml","--ghc-head","--irc-channel=irc.freenode.org#haskell-lens","--no-no-tests-no-bench","--no-unconstrained","cabal.project"]
+# REGENDATA ["-o",".travis.yml","--ghc-head","--irc-channel=irc.freenode.org#haskell-lens","--no-no-tests-no-bench","--no-unconstrained","--env=7.4.2:TEST=--disable-tests","--env=7.6.3:TEST=--disable-tests","cabal.project"]
 # EOF
