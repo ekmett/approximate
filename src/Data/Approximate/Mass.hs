@@ -36,7 +36,9 @@ import Data.Hashable (Hashable(..))
 import Data.Hashable.Lifted (Hashable1(..))
 import Data.Pointed
 import Data.SafeCopy
+#if !(MIN_VERSION_base(4,11,0))
 import Data.Semigroup
+#endif
 import Data.Serialize as Serialize
 #if __GLASGOW_HASKELL__ < 710
 import Data.Traversable
