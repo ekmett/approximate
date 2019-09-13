@@ -66,7 +66,12 @@ instance Serialize a => Serialize (Approximate a) where
   put (Approximate p l m h) = Serialize.put p >> Serialize.put l >> Serialize.put m >> Serialize.put h
   get = Approximate <$> Serialize.get <*> Serialize.get <*> Serialize.get <*> Serialize.get
 
-instance Serialize a => SafeCopy (Approximate a)
+instance Serialize a => SafeCopy (Approximate a) where
+  -- safecopy-0.10.0 changed its default implementations for these methods.
+  -- The implementations below are copied from the pre-0.10.0 defaults.
+  errorTypeName _ = "<unknown type>"
+  getCopy = contain Serialize.get
+  putCopy = contain . Serialize.put
 
 instance Hashable a => Hashable (Approximate a)
 instance Hashable1 Approximate where

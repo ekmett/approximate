@@ -1,3 +1,7 @@
+next [????.??.??]
+-----------------
+* Allow building with `safecopy-0.10`.
+
 0.3.1
 -----
 * Add a library dependency on the `doctests` test suite

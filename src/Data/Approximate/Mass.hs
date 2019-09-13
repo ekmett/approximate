@@ -74,7 +74,12 @@ instance Serialize a => Serialize (Mass a) where
   put (Mass p a) = Serialize.put p >> Serialize.put a
   get = Mass <$> Serialize.get <*> Serialize.get
 
-instance Serialize a => SafeCopy (Mass a)
+instance Serialize a => SafeCopy (Mass a) where
+  -- safecopy-0.10.0 changed its default implementations for these methods.
+  -- The implementations below are copied from the pre-0.10.0 defaults.
+  errorTypeName _ = "<unknown type>"
+  getCopy = contain Serialize.get
+  putCopy = contain . Serialize.put
 
 instance Hashable a => Hashable (Mass a)
 instance Hashable1 Mass where
