@@ -1,5 +1,4 @@
 {-# LANGUAGE CPP #-}
-{-# LANGUAGE MultiParamTypeClasses #-}
 {-# LANGUAGE FunctionalDependencies #-}
 {-# LANGUAGE FlexibleInstances #-}
 {-# LANGUAGE TemplateHaskell #-}
@@ -144,7 +143,7 @@ instance Unbox a => G.Vector U.Vector (Approximate a) where
   {-# INLINE elemseq #-}
 
 instance NFData a => NFData (Approximate a) where
-  rnf (Approximate _ l m h) = rnf l `seq` rnf m `seq` rnf h `seq` ()
+  rnf (Approximate _ l m h) = rnf l `seq` rnf m `seq` rnf h
 
 instance Functor Approximate where
   fmap f (Approximate p l m h) = Approximate p (f l) (f m) (f h)
