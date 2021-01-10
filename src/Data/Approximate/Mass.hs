@@ -49,6 +49,9 @@ import Data.Vector.Unboxed as U
 import GHC.Generics
 import Numeric.Log
 
+-- $setup
+-- >>> import Control.Monad (replicateM)
+
 -- | A quantity with a lower-bound on its probability mass. This represents
 -- a 'probable value' as a 'Monad' that you can use to calculate progressively
 -- less likely consequences.
@@ -65,6 +68,11 @@ import Numeric.Log
 -- Also note that @('&?')@ and @('|?')@ are able to use knowledge about the
 -- function to get better precision on their results than naively using
 -- @'liftA2' ('&&')@
+--
+-- >>> let z = Mass 0.875 'z'
+-- >>> replicateM 3 z
+-- Mass 0.669921875 "zzz"
+--
 data Mass a = Mass {-# UNPACK #-} !(Log Double) a
   deriving (Eq,Ord,Show,Read,Typeable,Data,Generic)
 

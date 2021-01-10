@@ -7,3 +7,4 @@ hlint:                  True
 tests:                  >=7.8
 -- Work around https://github.com/haskell/haddock/issues/679
 haddock:                <8.2 || >=8.4
+docspec:                True
