@@ -1,3 +1,4 @@
-- arguments: [--cpp-define=HLINT, --cpp-ansi]
+- arguments: [--cpp-ansi]
 
 - ignore: {name: Use import/export shortcut}
+- ignore: {name: Use fmap}
