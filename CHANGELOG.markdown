@@ -1,5 +1,5 @@
-next [yyyy.mm.dd]
------------------
+0.3.3 [2021.02.17]
+------------------
 * Allow building with `lens-5.*`.
 * The build-type has been changed from `Custom` to `Simple`.
   To achieve this, the `doctests` test suite has been removed in favor of using
