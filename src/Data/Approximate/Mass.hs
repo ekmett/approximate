@@ -192,8 +192,10 @@ instance Applicative Mass where
 instance Monoid a => Monoid (Mass a) where
   mempty = Mass 1 mempty
   {-# INLINE mempty #-}
+#if !(MIN_VERSION_base(4,11,0))
   mappend (Mass p a) (Mass q b) = Mass (p * q) (mappend a b)
   {-# INLINE mappend #-}
+#endif
 
 instance Semigroup a => Semigroup (Mass a) where
   Mass p a <> Mass q b = Mass (p * q) (a <> b)
