@@ -1,3 +1,7 @@
+next [????.??.??]
+-----------------
+* Drop support for pre-8.0 versions of GHC.
+
 0.3.4 [2021.02.21]
 ------------------
 * Fix the build with `safecopy-0.10.4` or later.
