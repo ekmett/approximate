@@ -17,9 +17,6 @@ module Data.Approximate.Mass
   , (|?), (&?), (^?)
   ) where
 
-#if __GLASGOW_HASKELL__ < 710
-import Control.Applicative
-#endif
 import Control.Comonad
 import Control.DeepSeq
 import Control.Monad
@@ -27,9 +24,6 @@ import Data.Binary as Binary
 import Data.Bytes.Serial as Bytes
 import Data.Copointed
 import Data.Data
-#if __GLASGOW_HASKELL__ < 710
-import Data.Foldable
-#endif
 import Data.Functor.Bind
 import Data.Functor.Extend
 import Data.Hashable (Hashable(..))
@@ -40,9 +34,6 @@ import Data.SafeCopy
 import Data.Semigroup
 #endif
 import Data.Serialize as Serialize
-#if __GLASGOW_HASKELL__ < 710
-import Data.Traversable
-#endif
 import Data.Vector.Generic as G
 import Data.Vector.Generic.Mutable as M
 import Data.Vector.Unboxed as U
@@ -74,7 +65,7 @@ import Numeric.Log
 -- Mass 0.669921875 "zzz"
 --
 data Mass a = Mass {-# UNPACK #-} !(Log Double) a
-  deriving (Eq,Ord,Show,Read,Typeable,Data,Generic)
+  deriving (Eq,Ord,Show,Read,Data,Generic)
 
 instance Binary a => Binary (Mass a) where
   put (Mass p a) = Binary.put p >> Binary.put a
@@ -139,10 +130,8 @@ instance Unbox a => M.MVector U.MVector (Mass a) where
   {-# INLINE basicUnsafeMove #-}
   basicUnsafeGrow (MV_Mass v) n = MV_Mass `liftM` M.basicUnsafeGrow v n
   {-# INLINE basicUnsafeGrow #-}
-#if MIN_VERSION_vector(0,11,0)
   basicInitialize (MV_Mass v) = M.basicInitialize v
   {-# INLINE basicInitialize #-}
-#endif
 
 instance Unbox a => G.Vector U.Vector (Mass a) where
   basicUnsafeFreeze (MV_Mass v) = V_Mass `liftM` G.basicUnsafeFreeze v

@@ -11,16 +11,12 @@ homepage:      http://github.com/analytics/approximate/
 bug-reports:   http://github.com/analytics/approximate/issues
 copyright:     Copyright (C) 2013 Edward A. Kmett
 build-type:    Simple
-tested-with:   GHC == 7.4.2
-             , GHC == 7.6.3
-             , GHC == 7.8.4
-             , GHC == 7.10.3
-             , GHC == 8.0.2
+tested-with:   GHC == 8.0.2
              , GHC == 8.2.2
              , GHC == 8.4.4
              , GHC == 8.6.5
              , GHC == 8.8.4
-             , GHC == 8.10.4
+             , GHC == 8.10.7
              , GHC == 9.0.1
 synopsis:      Approximate discrete values and numbers
 description:   This package provides approximate discrete values and numbers.
@@ -44,7 +40,7 @@ flag herbie
 
 library
   build-depends:
-    base                      >= 4.3      && < 5,
+    base                      >= 4.9      && < 5,
     binary                    >= 0.5      && < 0.9,
     bytes                     >= 0.7      && < 1,
     cereal                    >= 0.3.5    && < 0.6,
@@ -58,7 +54,7 @@ library
     semigroupoids             >= 3.0.2    && < 6,
     semigroups                >= 0.8.4    && < 1,
     safecopy                  >= 0.8.1    && < 0.11,
-    vector                    >= 0.9      && < 0.13
+    vector                    >= 0.12.1.2 && < 0.13
 
   if flag(herbie)
     build-depends: HerbiePlugin >= 0.1 && < 0.2
@@ -71,10 +67,7 @@ library
     Data.Approximate.Mass
     Data.Approximate.Numerics
 
-  if impl(ghc >= 7.4 && < 7.6)
-    build-depends: ghc-prim
-
   c-sources: cbits/fast.c
-  ghc-options: -Wall -fwarn-tabs -O2
+  ghc-options: -Wall -Wtabs -O2
   hs-source-dirs: src
   default-language: Haskell2010
