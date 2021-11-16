@@ -1,5 +1,7 @@
 next [????.??.??]
 -----------------
+* Add `Eq1` instances for `Approximate` and `Mass`.
+* Allow building with `hashable-1.4.*`.
 * Drop support for pre-8.0 versions of GHC.
 
 0.3.4 [2021.02.21]

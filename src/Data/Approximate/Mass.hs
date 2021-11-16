@@ -25,6 +25,7 @@ import Data.Bytes.Serial as Bytes
 import Data.Copointed
 import Data.Data
 import Data.Functor.Bind
+import Data.Functor.Classes
 import Data.Functor.Extend
 import Data.Hashable (Hashable(..))
 import Data.Hashable.Lifted (Hashable1(..))
@@ -82,6 +83,9 @@ instance (Serialize a, Typeable a) => SafeCopy (Mass a) where
   errorTypeName _ = "<unknown type>"
   getCopy = contain Serialize.get
   putCopy = contain . Serialize.put
+
+instance Eq1 Mass where
+    liftEq eq (Mass p a) (Mass q b) = p == q && eq a b
 
 instance Hashable a => Hashable (Mass a)
 instance Hashable1 Mass where

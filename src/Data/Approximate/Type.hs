@@ -31,6 +31,7 @@ import Data.Bytes.Serial as Bytes
 import Data.Copointed
 import Data.Data
 import Data.Functor.Apply
+import Data.Functor.Classes
 import Data.Hashable (Hashable(..))
 import Data.Hashable.Lifted (Hashable1(..))
 import Data.Monoid
@@ -68,6 +69,10 @@ instance (Serialize a, Typeable a) => SafeCopy (Approximate a) where
   errorTypeName _ = "<unknown type>"
   getCopy = contain Serialize.get
   putCopy = contain . Serialize.put
+
+instance Eq1 Approximate where
+    liftEq eq (Approximate p la ma ha) (Approximate q lb mb hb) =
+      p == q && eq la lb && eq ma mb && eq ha hb
 
 instance Hashable a => Hashable (Approximate a)
 instance Hashable1 Approximate where
