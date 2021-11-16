@@ -37,9 +37,10 @@ import Data.Monoid
 import Data.Pointed
 import Data.SafeCopy
 import Data.Serialize as Serialize
-import Data.Vector.Generic as G
-import Data.Vector.Generic.Mutable as M
-import Data.Vector.Unboxed as U
+import qualified Data.Vector.Generic as G
+import qualified Data.Vector.Generic.Mutable as M
+import qualified Data.Vector.Unboxed as U
+import Data.Vector.Unboxed (Unbox)
 import GHC.Generics
 import Numeric.Log
 
