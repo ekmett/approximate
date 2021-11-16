@@ -1,1 +1,5 @@
 packages: .
+
+-- TODO: Remove this once safecopy lifts its upper version bounds on
+-- template-haskell
+allow-newer: safecopy:template-haskell

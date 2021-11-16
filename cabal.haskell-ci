@@ -4,6 +4,7 @@ unconstrained:          False
 -- irc-channels:           irc.freenode.org#haskell-lens
 irc-if-in-origin-repo:  True
 hlint:                  True
+hlint-job:              9.0.1
 -- Work around https://github.com/haskell/haddock/issues/679
 haddock:                <8.2 || >=8.4
 docspec:                True
