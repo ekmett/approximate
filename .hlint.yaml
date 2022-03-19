@@ -1,4 +1,4 @@
-- arguments: [--cpp-ansi]
+- arguments: [-XCPP, --cpp-ansi]
 
 - ignore: {name: Use import/export shortcut}
 - ignore: {name: Use fmap}
