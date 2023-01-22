@@ -24,7 +24,7 @@ module Data.Approximate.Type
   ) where
 
 #if !MIN_VERSION_base(4,18,0)
-import Control.Applicative (Applicative(..))
+import Control.Applicative
 #endif
 import Control.DeepSeq
 import Control.Lens
