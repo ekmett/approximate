@@ -1,3 +1,4 @@
+{-# LANGUAGE CPP #-}
 {-# LANGUAGE FunctionalDependencies #-}
 {-# LANGUAGE FlexibleInstances #-}
 {-# LANGUAGE TemplateHaskell #-}
@@ -22,7 +23,9 @@ module Data.Approximate.Type
   , withMin, withMax
   ) where
 
-import Control.Applicative
+#if !MIN_VERSION_base(4,18,0)
+import Control.Applicative (Applicative(liftA2))
+#endif
 import Control.DeepSeq
 import Control.Lens
 import Control.Monad
