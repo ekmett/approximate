@@ -52,7 +52,7 @@ library
     lens                      >= 3.9      && < 6,
     log-domain,
     pointed                   >= 3        && < 6,
-    semigroupoids             >= 3.0.2    && < 6,
+    semigroupoids             >= 3.0.2    && < 7,
     semigroups                >= 0.8.4    && < 1,
     safecopy                  >= 0.8.1    && < 0.11,
     vector                    >= 0.12.1.2 && < 0.14
